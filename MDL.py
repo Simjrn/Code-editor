@@ -1,13 +1,13 @@
 import streamlit as st
 from time import sleep
 
-st.title("Dosh code editor")
+st.title("DML code editor")
+
+stop = st.toggle("Stop running code at errors?")
 
 user_input = st.text_area("Enter code:")
 
 output_placeholder = st.empty()
-
-stop = st.toggle("Stop running code at errors?")
 
 if st.button("Run:"):
     if user_input:
@@ -34,6 +34,14 @@ if st.button("Run:"):
                 elif line[0:9] == "<spinner>":
                     with st.spinner():
                         sleep(int(line[9:]))
+                elif line[0:6] == "<line>":
+                    st.markdown("---")
+                elif line[0:3] == "<G>":
+                    st.success(line[3:])
+                elif line[0:3] == "<R>":
+                    st.error(line[3:])
+                elif line[0:3] == "<B>":
+                    st.info(line[3:])
                 elif line[0:7] == '<write>':
                     st.write(f"{i+1}: {line[7:]}")
                 else:
@@ -41,7 +49,9 @@ if st.button("Run:"):
                         st.error(f"Line {i+1}: error. Code stopped")
                         st.stop()
                     else:
-                        st.error(f"Line {i+1}: error")
+                        st.error(f"Line {i+1}: error")      
+            st.markdown("---")            
+            st.info("Code finished")            
     else:
         output_placeholder.empty()
         st.warning("Please enter code.")

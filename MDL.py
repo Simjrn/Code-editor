@@ -1,7 +1,7 @@
 import streamlit as st
 from time import sleep
 
-st.set_page_config(icon="🧑‍💻", name="MDL editor")
+st.set_page_config(name="MDL editor")
 
 st.title("DML code editor")
 

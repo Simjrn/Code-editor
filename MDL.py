@@ -9,6 +9,7 @@ user_input = st.text_area("Enter code:")
 
 output_placeholder = st.empty()
 
+
 if st.button("Run:"):
     if user_input:
         with output_placeholder.container():
@@ -42,8 +43,24 @@ if st.button("Run:"):
                     st.error(line[3:])
                 elif line[0:3] == "<B>":
                     st.info(line[3:])
+                elif line[0:8] == "<python>":
+                    st.markdown(f"""```python
+                    {line[8:]}""")
                 elif line[0:7] == '<write>':
-                    st.write(f"{i+1}: {line[7:]}")
+                    line = line.replace("£££", "***")
+                    line = line.replace("££", "**")
+                    line = line.replace("£", "_")
+                    line = line.replace("~", "`")
+                    line = line.replace("..", "~~")
+                    line = line.replace("*/*", "```")
+                    line = line.replace(">>>", "•")
+                    line = line.replace("Ra|", ":rainbow[")
+                    line = line.replace("Gr|", ":green[")
+                    line = line.replace("Bl|", ":blue[")
+                    line = line.replace("Re|", ":red[")
+                    line = line.replace("||", "]")
+                    line = line.replace("!*!", "```")
+                    st.markdown(f"{i+1}: {line[7:]}")
                 else:
                     if stop:
                         st.error(f"Line {i+1}: error. Code stopped")

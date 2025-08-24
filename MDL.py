@@ -1,6 +1,8 @@
 import streamlit as st
 from time import sleep
 
+st.set_page_config(icon="🧑‍💻", name="MDL editor")
+
 st.title("DML code editor")
 
 stop = st.toggle("Stop running code at errors?")

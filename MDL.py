@@ -1,15 +1,16 @@
 import streamlit as st
 from time import sleep
+import streamlit_ace as st_ace
 
 st.set_page_config(
-    page_title="MDL editor", page_icon="🧑‍💻"
+    page_title="DML editor", page_icon="🧑‍💻"
 )
 
 st.title("DML code editor")
 
 stop = st.toggle("Stop running code at errors?")
 
-user_input = st.text_area("Enter code:")
+user_input = st_ace()
 
 output_placeholder = st.empty()
 

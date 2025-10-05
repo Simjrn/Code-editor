@@ -9,7 +9,7 @@ st.title("DML code editor")
 
 stop = st.toggle("Stop running code at errors?")
 
-user_input = st.text_input("enter DML")
+user_input = st.text_area("enter DML")
 
 output_placeholder = st.empty()
 
